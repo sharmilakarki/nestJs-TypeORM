@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Roles } from "src/roles/roles.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
 
 @Entity()
 export class User{
@@ -14,4 +15,11 @@ export class User{
 
     @Column()
     active: boolean;
+
+    @Column()
+    emailAddress:string;
+  
+    @ManyToOne(type => Roles, roles => roles.users)
+    roles: Roles;
+    
 }
